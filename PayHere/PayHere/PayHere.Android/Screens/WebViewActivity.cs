@@ -15,6 +15,9 @@ namespace PayHere.Droid.Screens
             SetContentView(Resource.Layout.webview);
 
             WebView webView = FindViewById<WebView>(Resource.Id.webView1);
+            webView.Settings.JavaScriptEnabled = true;
+            webView.SetWebChromeClient(new WebChromeClient());
+            webView.Settings.DomStorageEnabled = true;
             webView.LoadUrl("file:///android_asset/payweb.html");
         }
     }
