@@ -1,14 +1,14 @@
 ﻿using Android.App;
 using Android.Widget;
 using Android.OS;
+using Android.Content;
+using PayHere.Droid.Screens;
 
 namespace PayHere.Droid
 {
-    [Activity(Label = "PayHere", MainLauncher = true, Icon = "@mipmap/icon")]
+    [Activity(Label = "Pay Here", MainLauncher = true, Icon = "@mipmap/icon")]
     public class MainActivity : Activity
     {
-        int count = 1;
-
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -18,9 +18,13 @@ namespace PayHere.Droid
 
             // Get our button from the layout resource,
             // and attach an event to it
-            Button button = FindViewById<Button>(Resource.Id.myButton);
+            Button button = FindViewById<Button>(Resource.Id.buttonUrl);
 
-            button.Click += delegate { button.Text = $"{count++} clicks!"; };
+            button.Click += delegate
+            {
+                Intent intent = new Intent(this, typeof(WebViewActivity));
+                StartActivity(intent);
+            };
         }
     }
 }
